@@ -41,6 +41,7 @@ leakcanary = "2.12"
 
 # Coroutines
 coroutines = "1.7.3"
+lifecycleRuntimeComposeAndroid = "2.8.6"
 
 [libraries]
 # Core Android
@@ -109,6 +110,7 @@ leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", v
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
