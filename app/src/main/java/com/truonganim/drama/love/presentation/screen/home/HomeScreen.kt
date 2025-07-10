@@ -3,78 +3,43 @@ package com.truonganim.drama.love.presentation.screen.home
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.truonganim.drama.love.presentation.components.BottomNavigationBar
+import com.truonganim.drama.love.presentation.screen.discovery.DiscoveryScreen
+import com.truonganim.drama.love.presentation.screen.shorts.ShortsScreen
+import com.truonganim.drama.love.presentation.screen.reward.RewardScreen
+import com.truonganim.drama.love.presentation.screen.setting.SettingScreen
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
-    navController: NavHostController,
-    viewModel: HomeViewModel = hiltViewModel()
+    navController: NavHostController
 ) {
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
-    
+    var selectedTab by remember { mutableIntStateOf(0) }
+
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "DramaLove",
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+        bottomBar = {
+            BottomNavigationBar(
+                selectedTab = selectedTab,
+                onTabSelected = { selectedTab = it }
             )
         }
     ) { paddingValues ->
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
-            contentAlignment = Alignment.Center
+                .padding(paddingValues)
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = "Welcome to DramaLove!",
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
-                Text(
-                    text = "Home screen is under construction",
-                    fontSize = 16.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                
-                if (uiState.isLoading) {
-                    Spacer(modifier = Modifier.height(24.dp))
-                    CircularProgressIndicator()
-                }
-                
-                uiState.error?.let { error ->
-                    Spacer(modifier = Modifier.height(16.dp))
-                    Card(
-                        colors = CardDefaults.cardColors(
-                            containerColor = MaterialTheme.colorScheme.errorContainer
-                        )
-                    ) {
-                        Text(
-                            text = "Error: $error",
-                            modifier = Modifier.padding(16.dp),
-                            color = MaterialTheme.colorScheme.onErrorContainer
-                        )
+            when (selectedTab) {
+                0 -> DiscoveryScreen(
+                    onVideoClick = { videoId ->
+                        // Navigate to video player
+                        // navController.navigate("player/$videoId")
                     }
-                }
+                )
+                1 -> ShortsScreen()
+                2 -> RewardScreen()
+                3 -> SettingScreen()
             }
         }
     }

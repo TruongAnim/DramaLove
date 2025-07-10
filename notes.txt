@@ -3,7 +3,7 @@ Mục tiêu: Xây dựng app DramaLove với tính năng xem video short online
 Cụ thể:
 Ứng dụng gồm 1 màn hình splash nơi sẽ load data từ API
 Sau đó vào bên trong là màn hình home, gồm có 4 tab
-Tab 1: Trang chủ, gồm có các video hot, video mới, video được yêu thích nhất
+Tab 1: Discovery, gồm có các video hot, video mới, video được yêu thích nhất
 Tab 2: Tính năng short video giống như tiktok
 Tab 3: Tính năng điểm danh hàng ngày nhận thưởng
 Tab 4: Profile của user, setting, notification, v.v...

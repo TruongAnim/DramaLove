@@ -34,8 +34,8 @@ data class BottomNavItem(
 )
 
 val bottomNavItems = listOf(
-    BottomNavItem("Home", Icons.Default.Home),
+    BottomNavItem("Discovery", Icons.Default.Home),
     BottomNavItem("Shorts", Icons.Default.PlayArrow),
-    BottomNavItem("Check-in", Icons.Default.DateRange),
-    BottomNavItem("Profile", Icons.Default.Person)
+    BottomNavItem("Reward", Icons.Default.Star),
+    BottomNavItem("Setting", Icons.Default.Settings)
 )

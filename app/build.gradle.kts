@@ -131,4 +131,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("com.squareup:javapoet:1.13.0")
+    implementation("androidx.compose.material:material-icons-extended")
 }
