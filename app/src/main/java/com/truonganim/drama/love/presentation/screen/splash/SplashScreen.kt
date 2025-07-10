@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.truonganim.drama.love.ui.theme.DramaLoveColors
+import com.truonganim.drama.love.ui.theme.DramaLoveGradients
 
 @Composable
 fun SplashScreen(
@@ -50,15 +52,7 @@ fun SplashScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF6A1B9A), // Purple
-                        Color(0xFF8E24AA), // Light Purple
-                        Color(0xFFAB47BC)  // Lighter Purple
-                    )
-                )
-            ),
+            .background(brush = DramaLoveGradients.splashGradient()),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -72,7 +66,7 @@ fun SplashScreen(
                     .scale(logoScale),
                 shape = RoundedCornerShape(20.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
             ) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -83,7 +77,7 @@ fun SplashScreen(
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = "DramaLove Logo",
                         modifier = Modifier.size(60.dp),
-                        tint = Color(0xFF6A1B9A)
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
             }
@@ -95,17 +89,17 @@ fun SplashScreen(
                 text = "DramaLove",
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.White,
+                color = DramaLoveColors.White,
                 textAlign = TextAlign.Center
             )
-            
+
             Spacer(modifier = Modifier.height(8.dp))
-            
+
             // Tagline
             Text(
                 text = "Your favorite drama destination",
                 fontSize = 16.sp,
-                color = Color.White.copy(alpha = 0.8f),
+                color = DramaLoveColors.White.copy(alpha = 0.8f),
                 textAlign = TextAlign.Center
             )
             
@@ -123,17 +117,17 @@ fun SplashScreen(
                             .width(200.dp)
                             .height(6.dp)
                             .clip(RoundedCornerShape(3.dp)),
-                        color = Color.White,
-                        trackColor = Color.White.copy(alpha = 0.3f),
+                        color = DramaLoveColors.White,
+                        trackColor = DramaLoveColors.White.copy(alpha = 0.3f),
                     )
-                    
+
                     Spacer(modifier = Modifier.height(16.dp))
-                    
+
                     // Loading Text
                     Text(
                         text = "Loading... ${(uiState.progress * 100).toInt()}%",
                         fontSize = 14.sp,
-                        color = Color.White.copy(alpha = 0.9f),
+                        color = DramaLoveColors.White.copy(alpha = 0.9f),
                         textAlign = TextAlign.Center
                     )
                 }
@@ -145,12 +139,12 @@ fun SplashScreen(
                 Card(
                     modifier = Modifier.padding(horizontal = 32.dp),
                     colors = CardDefaults.cardColors(
-                        containerColor = Color.Red.copy(alpha = 0.1f)
+                        containerColor = MaterialTheme.colorScheme.errorContainer
                     )
                 ) {
                     Text(
                         text = "Error: $error",
-                        color = Color.White,
+                        color = MaterialTheme.colorScheme.onErrorContainer,
                         modifier = Modifier.padding(16.dp),
                         textAlign = TextAlign.Center
                     )
@@ -162,7 +156,7 @@ fun SplashScreen(
         Text(
             text = "Version 1.0.0",
             fontSize = 12.sp,
-            color = Color.White.copy(alpha = 0.6f),
+            color = DramaLoveColors.White.copy(alpha = 0.6f),
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 32.dp)
