@@ -1,0 +1,68 @@
+Mục tiêu: Xây dựng app DramaLove với tính năng xem video short online
+
+Cụ thể:
+Ứng dụng gồm 1 màn hình splash nơi sẽ load data từ API
+Sau đó vào bên trong là màn hình home, gồm có 4 tab
+Tab 1: Trang chủ, gồm có các video hot, video mới, video được yêu thích nhất
+Tab 2: Tính năng short video giống như tiktok
+Tab 3: Tính năng điểm danh hàng ngày nhận thưởng
+Tab 4: Profile của user, setting, notification, v.v...
+Khi nhấn vào 1 phim thì mở màn hình xem phim, nơi user có thể play, pause, like, dislike, share, v.v...
+App có tính năng subs title cho phép user thay đổi sub khi đang xem phim
+Subtitle được cung cấp dưới dạng list các link file srt
+
+Ứng dụng sẽ có bộ API được cung cấp sau, hiện tại cứ sử dụng dữ liệu dummy
+API sẽ gồm các thành phần như danh sách phim, danh sách category, login user, v.v...
+
+Nguồn video sẽ được upload lên CDN, và được API trả về app dưới dạng link m3u8
+
+1. Tổng quan Kiến trúc
+
+Kiến trúc ứng dụng theo Clean Architecture + MVVM (Model - View - ViewModel) kết hợp Unidirectional Data Flow (UDF):
+
+2. Công nghệ & Thư viện chính
+
+Thành phần,Công nghệ / Thư viện,Mục đích sử dụng
+UI,Jetpack Compose,Giao diện hiện đại, declarative UI
+Navigation,Navigation Compose,Điều hướng giữa các màn hình
+State Mgmt,ViewModel + StateFlow / MutableState,Quản lý và phát tán trạng thái UI
+Architecture,Clean Architecture + MVVM + UDF,Cấu trúc rõ ràng, dễ mở rộng và test
+Dependency Injection,Hilt,Quản lý dependency tự động
+Networking,Retrofit + OkHttp + Moshi hoặc kotlinx.serialization,Giao tiếp API RESTful
+Image Loading,Coil,Tải ảnh hiệu quả, tối ưu cho Compose
+Video Playback,ExoPlayer,Phát video chất lượng cao, hỗ trợ streaming
+Push Notification,Firebase Cloud Messaging (FCM),Gửi thông báo phim mới, sự kiện
+Remote Config,Firebase Remote Config,Thay đổi cấu hình app từ xa mà không cần cập nhật
+Analytics,Firebase Analytics hoặc Mixpanel,Theo dõi hành vi người dùng, gợi ý nội dung
+Crash Reporting,Firebase Crashlytics,Báo cáo lỗi runtime, crash người dùng
+Debug tools,Chucker / LeakCanary,Hỗ trợ debug mạng và memory leak
+Local DB, Room, Lưu phim đã xem, yêu thích
+
+3. Cấu trúc thư mục đề xuất
+project/
+│
+├── di/                     // Dependency Injection - Hilt modules
+├── domain/                // Layer logic nghiệp vụ (UseCase, Model)
+│   ├── model/
+│   └── usecase/
+│
+├── data/                  // Repository, Remote, Local, DTO
+│   ├── repository/
+│   ├── remote/
+│   │   ├── api/
+│   │   └── dto/
+│   └── local/
+│       ├── db/
+│       └── entity/
+│
+├── presentation/          // UI, ViewModel, Screen
+│   ├── components/        // Các Compose tái sử dụng
+│   ├── screen/
+│   │   ├── home/
+│   │   ├── detail/
+│   │   ├── player/
+│   │   └── favorites/
+│   └── navigation/
+│
+├── utils/                 // Các hàm tiện ích
+└── App.kt                 // Main Application class

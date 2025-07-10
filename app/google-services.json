@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "303523044524",
+    "project_id": "dramalove-e4e45",
+    "storage_bucket": "dramalove-e4e45.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303523044524:android:106142436d10d9cd809309",
+        "android_client_info": {
+          "package_name": "com.truonganim.drama.love"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7SSSrZPRI3ycbJYnE-gnJIVEjWVm2Ug0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
